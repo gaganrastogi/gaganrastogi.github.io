@@ -490,29 +490,30 @@
       color: #666;
     }
 
-    /* Hidden Fun Facts */
-    .fun-fact {
-      display: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: var(--primary-color);
-      color: white;
-      padding: 10px 15px;
-      border-radius: 5px;
-      font-size: 0.9rem;
-      z-index: 10;
-      width: 80%;
-      text-align: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+    /* Floating Clickable Elements */
+    .floating-element {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      background: var(--highlight-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      animation: float 6s ease-in-out infinite;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    .language-item:hover .fun-fact, 
-    .interest-item:hover .fun-fact {
-      display: block;
-      opacity: 1;
+    .floating-element:hover {
+      transform: scale(1.1);
+    }
+
+    .floating-element i {
+      color: var(--dark-color);
+      font-size: 1.2rem;
     }
 
     /* Footer Styles */
@@ -557,163 +558,11 @@
 
     @keyframes float {
       0%, 100% {
-        transform: translateY(0);
+        transform: translateY(0) rotate(0deg);
       }
       50% {
-        transform: translateY(-10px);
+        transform: translateY(-20px) rotate(5deg);
       }
-    }
-
-    /* Floating elements */
-    .floating {
-      position: absolute;
-      opacity: 0.1;
-      z-index: 1;
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .floating.shape1 {
-      top: 10%;
-      left: 5%;
-      width: 50px;
-      height: 50px;
-      background: var(--highlight-color);
-      border-radius: 50%;
-      animation-delay: 0s;
-    }
-
-    .floating.shape2 {
-      top: 30%;
-      right: 8%;
-      width: 70px;
-      height: 70px;
-      background: var(--secondary-color);
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-      animation-delay: 1s;
-    }
-
-    .floating.shape3 {
-      bottom: 20%;
-      left: 10%;
-      width: 40px;
-      height: 40px;
-      background: var(--primary-color);
-      border-radius: 10px;
-      animation-delay: 2s;
-    }
-
-    /* Interactive Elements */
-    .click-me {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: var(--highlight-color);
-      color: var(--dark-color);
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      z-index: 100;
-      transition: var(--transition);
-      animation: pulse 2s infinite;
-    }
-
-    .click-me:hover {
-      transform: scale(1.1) rotate(10deg);
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(255, 209, 102, 0.7);
-      }
-      70% {
-        box-shadow: 0 0 0 15px rgba(255, 209, 102, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(255, 209, 102, 0);
-      }
-    }
-
-    .fun-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .fun-modal.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .modal-content {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 500px;
-      text-align: center;
-      position: relative;
-      transform: scale(0.8);
-      transition: transform 0.3s ease;
-    }
-
-    .fun-modal.active .modal-content {
-      transform: scale(1);
-    }
-
-    .modal-content h3 {
-      color: var(--primary-color);
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-    }
-
-    .modal-content p {
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--primary-color);
-    }
-
-    /* Timeline Effect */
-    .timeline {
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .timeline::after {
-      content: '';
-      position: absolute;
-      width: 6px;
-      background: linear-gradient(to bottom, var(--secondary-color), var(--highlight-color));
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -3px;
-      border-radius: 3px;
     }
 
     /* Responsive Styles */
@@ -737,10 +586,6 @@
       
       h2 {
         font-size: 2rem;
-      }
-
-      .timeline::after {
-        left: 31px;
       }
     }
 
@@ -768,9 +613,11 @@
 </head>
 <body>
   <!-- Floating background elements -->
-  <div class="floating shape1"></div>
-  <div class="floating shape2"></div>
-  <div class="floating shape3"></div>
+  <div class="floating-element" style="top: 20%; left: 5%; animation-delay: 0s;"><i class="fas fa-star"></i></div>
+  <div class="floating-element" style="top: 30%; right: 8%; animation-delay: 1s;"><i class="fas fa-heart"></i></div>
+  <div class="floating-element" style="bottom: 20%; left: 10%; animation-delay: 2s;"><i class="fas fa-lightbulb"></i></div>
+  <div class="floating-element" style="top: 15%; right: 15%; animation-delay: 0.5s;"><i class="fas fa-bolt"></i></div>
+  <div class="floating-element" style="bottom: 30%; right: 5%; animation-delay: 1.5s;"><i class="fas fa-cloud"></i></div>
 
   <header>
     <div class="container">
@@ -947,17 +794,14 @@
         <div class="language-item">
           <div class="language-name">Hindi</div>
           <div class="proficiency">Native Speaker</div>
-          <div class="fun-fact">Can recite all dialogues from Sholay!</div>
         </div>
         <div class="language-item">
           <div class="language-name">Punjabi</div>
           <div class="proficiency">Native Speaker</div>
-          <div class="fun-fact">Knows all the best Punjabi jokes!</div>
         </div>
         <div class="language-item">
           <div class="language-name">English</div>
           <div class="proficiency">Professional Proficiency</div>
-          <div class="fun-fact">Writes better English than most native speakers!</div>
         </div>
       </div>
     </section>
@@ -967,37 +811,18 @@
       <div class="interests-container">
         <div class="interest-item">
           <div class="interest-name">Chess</div>
-          <div class="fun-fact">Checkmate in 3 moves? Challenge accepted!</div>
         </div>
         <div class="interest-item">
           <div class="interest-name">Technology</div>
-          <div class="fun-fact">Can talk about tech for hours without blinking!</div>
         </div>
         <div class="interest-item">
           <div class="interest-name">Programming</div>
-          <div class="fun-fact">When I'm not balancing books, I'm balancing brackets!</div>
         </div>
         <div class="interest-item">
           <div class="interest-name">Finance</div>
-          <div class="fun-fact">I dream in Excel formulas!</div>
         </div>
       </div>
     </section>
-  </div>
-
-  <!-- Interactive Click Me Button -->
-  <div class="click-me" id="funButton">
-    <i class="fas fa-magic"></i>
-  </div>
-
-  <!-- Fun Modal -->
-  <div class="fun-modal" id="funModal">
-    <div class="modal-content">
-      <button class="close-modal" id="closeModal">&times;</button>
-      <h3>Did You Know?</h3>
-      <p id="funFactText">Gagan once automated a 4-hour accounting task down to 2 minutes using Excel macros, then spent the saved time perfecting his chess strategy!</p>
-      <p><small>Click anywhere to close</small></p>
-    </div>
   </div>
 
   <footer>
@@ -1034,38 +859,6 @@
         profilePic.style.animation = '';
       });
 
-      // Fun button interaction
-      const funButton = document.getElementById('funButton');
-      const funModal = document.getElementById('funModal');
-      const closeModal = document.getElementById('closeModal');
-      const funFactText = document.getElementById('funFactText');
-
-      const funFacts = [
-        "Gagan can recite the entire GST tax code from memory (just kidding... or is he?)",
-        "In his free time, Gagan enjoys finding tax loopholes... for fun!",
-        "Gagan once debugged a complex Excel macro in his sleep!",
-        "Legend says Gagan's Tally skills are so fast, he can finish month-end closing in a day!",
-        "Gagan's idea of a relaxing weekend is optimizing database queries!",
-        "They say Gagan can calculate compound interest in his head faster than a calculator!",
-        "Gagan doesn't count sheep to fall asleep - he reviews balance sheets!",
-        "The only thing Gagan loves more than a balanced ledger is a perfectly optimized algorithm!"
-      ];
-
-      funButton.addEventListener('click', () => {
-        funFactText.textContent = funFacts[Math.floor(Math.random() * funFacts.length)];
-        funModal.classList.add('active');
-      });
-
-      closeModal.addEventListener('click', () => {
-        funModal.classList.remove('active');
-      });
-
-      funModal.addEventListener('click', (e) => {
-        if (e.target === funModal) {
-          funModal.classList.remove('active');
-        }
-      });
-
       // Add hover effects to skills
       const skillTags = document.querySelectorAll('.skill-tag');
       skillTags.forEach(tag => {
@@ -1080,46 +873,96 @@
       // Easter egg - change title on blur
       const originalTitle = document.title;
       window.addEventListener('blur', () => {
-        document.title = "Wait! Come back! 😢";
+        document.title = "Wait! Come back!";
       });
       window.addEventListener('focus', () => {
         document.title = originalTitle;
       });
-    });
 
-    // Add confetti effect for fun
-    function showConfetti() {
-      const confettiSettings = { 
-        target: 'confetti-canvas',
-        max: 150,
-        size: 1.5,
-        animate: true,
-        props: ['circle', 'square', 'triangle', 'line'],
-        colors: [[255,209,102], [60,110,113], [40,75,99]],
-        clock: 25,
-        rotate: true,
-        start_from_edge: true,
-        respawn: true
-      };
-      
-      const confetti = new ConfettiGenerator(confettiSettings);
-      confetti.render();
-      
-      setTimeout(() => {
-        confetti.clear();
-      }, 3000);
-    }
+      // Floating elements interaction
+      const floatingElements = document.querySelectorAll('.floating-element');
+      floatingElements.forEach(element => {
+        element.addEventListener('click', () => {
+          // Create "Just kidding" message
+          const message = document.createElement('div');
+          message.textContent = 'Pop!';
+          message.style.position = 'fixed';
+          message.style.top = '50%';
+          message.style.left = '50%';
+          message.style.transform = 'translate(-50%, -50%)';
+          message.style.backgroundColor = 'rgba(0,0,0,0.8)';
+          message.style.color = 'white';
+          message.style.padding = '10px 20px';
+          message.style.borderRadius = '5px';
+          message.style.zIndex = '1000';
+          message.style.animation = 'fadeInUp 0.5s forwards';
+          document.body.appendChild(message);
+          
+          // Remove message after 1.5 seconds
+          setTimeout(() => {
+            message.style.animation = 'fadeInUp 0.5s reverse forwards';
+            setTimeout(() => message.remove(), 500);
+          }, 1500);
+          
+          // Remove the clicked element
+          element.style.transform = 'scale(0)';
+          element.style.opacity = '0';
+          setTimeout(() => element.remove(), 300);
+        });
+      });
 
-    // Load confetti script if button is clicked
-    document.getElementById('funButton').addEventListener('click', () => {
-      if (!window.ConfettiGenerator) {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js';
-        script.onload = showConfetti;
-        document.body.appendChild(script);
-      } else {
-        showConfetti();
+      // Add more floating elements periodically
+      function addFloatingElement() {
+        if (document.querySelectorAll('.floating-element').length < 10) {
+          const icons = ['star', 'heart', 'lightbulb', 'bolt', 'cloud', 'gem', 'rocket', 'music', 'cog', 'globe'];
+          const element = document.createElement('div');
+          element.className = 'floating-element';
+          element.innerHTML = `<i class="fas fa-${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
+          
+          // Random position
+          const top = Math.random() * 80 + 10;
+          const left = Math.random() * 80 + 10;
+          const delay = Math.random() * 3;
+          
+          element.style.top = `${top}%`;
+          element.style.left = `${left}%`;
+          element.style.animationDelay = `${delay}s`;
+          
+          // Add click event
+          element.addEventListener('click', () => {
+            // Create "Just kidding" message
+            const message = document.createElement('div');
+            message.textContent = 'Pop!';
+            message.style.position = 'fixed';
+            message.style.top = '50%';
+            message.style.left = '50%';
+            message.style.transform = 'translate(-50%, -50%)';
+            message.style.backgroundColor = 'rgba(0,0,0,0.8)';
+            message.style.color = 'white';
+            message.style.padding = '10px 20px';
+            message.style.borderRadius = '5px';
+            message.style.zIndex = '1000';
+            message.style.animation = 'fadeInUp 0.5s forwards';
+            document.body.appendChild(message);
+            
+            // Remove message after 1.5 seconds
+            setTimeout(() => {
+              message.style.animation = 'fadeInUp 0.5s reverse forwards';
+              setTimeout(() => message.remove(), 500);
+            }, 1500);
+            
+            // Remove the clicked element
+            element.style.transform = 'scale(0)';
+            element.style.opacity = '0';
+            setTimeout(() => element.remove(), 300);
+          });
+          
+          document.body.appendChild(element);
+        }
       }
+
+      // Add new elements every 5-10 seconds
+      setInterval(addFloatingElement, Math.random() * 5000 + 5000);
     });
   </script>
 </body>
