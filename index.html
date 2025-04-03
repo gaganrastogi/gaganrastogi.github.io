@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gagan Rastogi | Professional Resume</title>
+  <title>Gagan Rastogi | Finance & Tech Professional</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary-color: #284B63;
@@ -11,20 +13,30 @@
       --light-color: #FFFFFF;
       --dark-color: #353535;
       --accent-color: #D9D9D9;
+      --highlight-color: #FFD166;
+      --text-color: #333333;
+      --bg-color: #f9f9f9;
+      --card-bg: #ffffff;
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
+      font-family: 'Poppins', sans-serif;
       line-height: 1.7;
-      color: var(--dark-color);
-      background-color: #f9f9f9;
+      color: var(--text-color);
+      background-color: var(--bg-color);
       font-size: 18px;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
     }
 
     .container {
@@ -33,11 +45,27 @@
       padding: 0 20px;
     }
 
+    /* Header Styles */
     header {
-      background-color: var(--primary-color);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
-      padding: 60px 0 30px;
+      padding: 80px 0 40px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+      opacity: 0.1;
+      pointer-events: none;
     }
 
     .profile-container {
@@ -45,39 +73,102 @@
       flex-direction: column;
       align-items: center;
       margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 1s forwards 0.3s;
     }
 
     .profile-pic {
-      width: 150px;
-      height: 150px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
-      background-color: var(--secondary-color);
-      margin-bottom: 20px;
+      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+      margin-bottom: 25px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 64px;
+      font-size: 72px;
       color: var(--light-color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .profile-pic::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255,255,255,0.3),
+        rgba(255,255,255,0)
+      );
+      transform: rotate(30deg);
+      transition: var(--transition);
+    }
+
+    .profile-pic:hover::after {
+      transform: rotate(30deg) translate(20%, 20%);
     }
 
     .contact-info {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
+      gap: 25px;
+      margin-top: 25px;
       font-size: 1.1rem;
     }
 
     .contact-item {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 10px;
+      background: rgba(255,255,255,0.1);
+      padding: 10px 20px;
+      border-radius: 50px;
+      backdrop-filter: blur(5px);
+      transition: var(--transition);
     }
 
+    .contact-item:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+    }
+
+    .contact-item a {
+      color: white;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .contact-item a:hover {
+      color: var(--highlight-color);
+    }
+
+    /* Section Styles */
     .section {
-      padding: 35px 0;
-      border-bottom: 1px solid var(--accent-color);
+      padding: 50px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .section:last-child {
@@ -85,138 +176,551 @@
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      background: linear-gradient(to right, white, var(--highlight-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, var(--highlight-color), transparent);
     }
 
     h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: var(--primary-color);
-      margin-bottom: 25px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--secondary-color);
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      position: relative;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 70px;
+      height: 4px;
+      background: linear-gradient(to right, var(--secondary-color), var(--highlight-color));
+      border-radius: 2px;
     }
 
     .intro {
       text-align: center;
       max-width: 800px;
-      margin: 0 auto 30px;
-      font-size: 1.25rem;
+      margin: 0 auto 40px;
+      font-size: 1.3rem;
       line-height: 1.8;
+      color: var(--text-color);
+      position: relative;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
 
+    .intro::before {
+      content: open-quote;
+      font-size: 4rem;
+      color: var(--secondary-color);
+      opacity: 0.2;
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      font-family: Georgia, serif;
+    }
+
+    .intro::after {
+      content: close-quote;
+      font-size: 4rem;
+      color: var(--secondary-color);
+      opacity: 0.2;
+      position: absolute;
+      bottom: -40px;
+      right: 10px;
+      font-family: Georgia, serif;
+    }
+
+    /* Experience Styles */
     .experience-item {
-      margin-bottom: 35px;
+      margin-bottom: 40px;
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .experience-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .experience-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--secondary-color), var(--highlight-color));
     }
 
     .experience-header {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
+      gap: 10px;
     }
 
     .job-title {
-      font-size: 1.4rem;
-      font-weight: bold;
+      font-size: 1.5rem;
+      font-weight: 600;
       color: var(--secondary-color);
+      position: relative;
+      display: inline-block;
+    }
+
+    .job-title::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--highlight-color);
+      transition: width 0.3s ease;
+    }
+
+    .experience-item:hover .job-title::after {
+      width: 100%;
     }
 
     .company {
-      font-weight: bold;
-      font-size: 1.2rem;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--primary-color);
     }
 
     .duration {
-      color: #555;
+      color: #666;
       font-style: italic;
       font-size: 1.1rem;
+      background: rgba(0,0,0,0.05);
+      padding: 5px 10px;
+      border-radius: 20px;
     }
 
     .location {
-      color: #555;
+      color: #666;
       font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
     .achievements {
-      margin-top: 12px;
-      padding-left: 25px;
-      font-size: 1.05rem;
+      margin-top: 15px;
+      padding-left: 30px;
+      font-size: 1.1rem;
+      list-style-type: none;
     }
 
     .achievements li {
-      margin-bottom: 8px;
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 30px;
+      line-height: 1.6;
     }
 
+    .achievements li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--highlight-color);
+      font-size: 1.2rem;
+    }
+
+    /* Skills Styles */
     .skills-container {
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
-      margin-top: 20px;
+      margin-top: 25px;
     }
 
     .skill-tag {
-      background-color: var(--secondary-color);
+      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
       color: white;
-      padding: 10px 18px;
-      border-radius: 20px;
-      font-size: 1.05rem;
+      padding: 12px 22px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
     }
 
+    .skill-tag:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .skill-tag::after {
+      content: attr(data-level);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .skill-tag:hover::after {
+      opacity: 1;
+    }
+
+    /* Education Styles */
     .education-item {
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       font-size: 1.1rem;
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .education-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
 
     .degree {
-      font-weight: bold;
+      font-weight: 600;
       color: var(--secondary-color);
-      font-size: 1.2rem;
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .degree::before {
+      content: "🎓";
     }
 
     .school {
-      font-weight: bold;
+      font-weight: 600;
+      margin-bottom: 5px;
     }
 
+    /* Languages & Interests */
     .languages-container, .interests-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 25px;
+      gap: 20px;
       margin-top: 25px;
     }
 
     .language-item, .interest-item {
-      background-color: var(--accent-color);
-      padding: 12px 20px;
-      border-radius: 5px;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       font-size: 1.1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: var(--transition);
+      min-width: 150px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .language-item:hover, .interest-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .language-item::after, .interest-item::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--secondary-color), var(--highlight-color));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .language-item:hover::after, .interest-item:hover::after {
+      transform: scaleX(1);
     }
 
     .language-name, .interest-name {
-      font-weight: bold;
+      font-weight: 600;
+      margin-bottom: 5px;
     }
 
     .proficiency {
       font-size: 1rem;
-      color: #555;
+      color: #666;
     }
 
+    /* Hidden Fun Facts */
+    .fun-fact {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--primary-color);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      z-index: 10;
+      width: 80%;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .language-item:hover .fun-fact, 
+    .interest-item:hover .fun-fact {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Footer Styles */
     footer {
-      background-color: var(--dark-color);
+      background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
       color: white;
       text-align: center;
-      padding: 25px 0;
-      margin-top: 40px;
+      padding: 30px 0;
+      margin-top: 50px;
+      font-size: 1.1rem;
+      position: relative;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    footer p {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Floating elements */
+    .floating {
+      position: absolute;
+      opacity: 0.1;
+      z-index: 1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating.shape1 {
+      top: 10%;
+      left: 5%;
+      width: 50px;
+      height: 50px;
+      background: var(--highlight-color);
+      border-radius: 50%;
+      animation-delay: 0s;
+    }
+
+    .floating.shape2 {
+      top: 30%;
+      right: 8%;
+      width: 70px;
+      height: 70px;
+      background: var(--secondary-color);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      animation-delay: 1s;
+    }
+
+    .floating.shape3 {
+      bottom: 20%;
+      left: 10%;
+      width: 40px;
+      height: 40px;
+      background: var(--primary-color);
+      border-radius: 10px;
+      animation-delay: 2s;
+    }
+
+    /* Interactive Elements */
+    .click-me {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--highlight-color);
+      color: var(--dark-color);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      z-index: 100;
+      transition: var(--transition);
+      animation: pulse 2s infinite;
+    }
+
+    .click-me:hover {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 209, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(255, 209, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 209, 102, 0);
+      }
+    }
+
+    .fun-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .fun-modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+
+    .fun-modal.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-content h3 {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .modal-content p {
+      margin-bottom: 20px;
       font-size: 1.1rem;
     }
 
+    .close-modal {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--primary-color);
+    }
+
+    /* Timeline Effect */
+    .timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background: linear-gradient(to bottom, var(--secondary-color), var(--highlight-color));
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+      border-radius: 3px;
+    }
+
+    /* Responsive Styles */
     @media (max-width: 768px) {
       .experience-header {
         flex-direction: column;
-        gap: 5px;
+        gap: 10px;
       }
 
       .skills-container, .languages-container, .interests-container {
@@ -228,16 +732,46 @@
       }
       
       h1 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
       }
       
       h2 {
-        font-size: 1.8rem;
+        font-size: 2rem;
+      }
+
+      .timeline::after {
+        left: 31px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      .contact-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .contact-item {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Floating background elements -->
+  <div class="floating shape1"></div>
+  <div class="floating shape2"></div>
+  <div class="floating shape3"></div>
+
   <header>
     <div class="container">
       <div class="profile-container">
@@ -246,7 +780,7 @@
         <div class="contact-info">
           <div class="contact-item">
             <span>📧</span>
-            <a href="mailto:gaganrastogimks@gmail.com" style="color: white; text-decoration: none;">gaganrastogimks@gmail.com</a>
+            <a href="mailto:gaganrastogimks@gmail.com">gaganrastogimks@gmail.com</a>
           </div>
           <div class="contact-item">
             <span>📱</span>
@@ -258,7 +792,7 @@
           </div>
           <div class="contact-item">
             <span>🌐</span>
-            <a href="gaganrastogi.github.io" style="color: white; text-decoration: none;">gaganrastogi.github.io</a>
+            <a href="https://gaganrastogi.github.io">gaganrastogi.github.io</a>
           </div>
         </div>
       </div>
@@ -266,12 +800,12 @@
   </header>
 
   <div class="container">
-    <section class="section">
+    <section class="section" id="intro">
       <p class="intro">An experienced finance professional with 8 years in accounting, taxation, and financial management. Skilled in using digital tools, with over 2 years of coding experience. Good at solving problems and finding effective solutions for different industries.</p>
     </section>
 
-    <section class="section">
-      <h2>Work Experience</h2>
+    <section class="section" id="experience">
+      <h2>Professional Journey</h2>
       
       <div class="experience-item">
         <div class="experience-header">
@@ -292,7 +826,7 @@
         <div class="experience-header">
           <div class="job-title">IT & Accounts Manager</div>
           <div class="company">D.A.V Public School</div>
-          <div class="location">Muktsar</div>
+          <div class="location">📍 Muktsar</div>
           <div class="duration">December 2023 - July 2024</div>
         </div>
         <ul class="achievements">
@@ -321,7 +855,7 @@
         <div class="experience-header">
           <div class="job-title">Chief Operations Officer</div>
           <div class="company">CA Study (castudyweb.com)</div>
-          <div class="location">Madhya Pradesh</div>
+          <div class="location">📍 Madhya Pradesh</div>
           <div class="duration">March 2021 - July 2023</div>
         </div>
         <ul class="achievements">
@@ -367,22 +901,22 @@
       </div>
     </section>
 
-    <section class="section">
-      <h2>Skills</h2>
+    <section class="section" id="skills">
+      <h2>Skills & Expertise</h2>
       <div class="skills-container">
-        <div class="skill-tag">Excel Macros & VBA</div>
-        <div class="skill-tag">Python</div>
-        <div class="skill-tag">WordPress</div>
-        <div class="skill-tag">Tally</div>
-        <div class="skill-tag">Mukti</div>
-        <div class="skill-tag">Busy (Accounting Software)</div>
-        <div class="skill-tag">PhotoShop</div>
-        <div class="skill-tag">Video Editing</div>
-        <div class="skill-tag">Website Management</div>
+        <div class="skill-tag" data-level="Advanced">Excel Macros & VBA</div>
+        <div class="skill-tag" data-level="Intermediate">Python</div>
+        <div class="skill-tag" data-level="Advanced">WordPress</div>
+        <div class="skill-tag" data-level="Expert">Tally</div>
+        <div class="skill-tag" data-level="Expert">Mukti</div>
+        <div class="skill-tag" data-level="Advanced">Busy (Accounting Software)</div>
+        <div class="skill-tag" data-level="Intermediate">PhotoShop</div>
+        <div class="skill-tag" data-level="Intermediate">Video Editing</div>
+        <div class="skill-tag" data-level="Advanced">Website Management</div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="education">
       <h2>Education</h2>
       
       <div class="education-item">
@@ -407,32 +941,63 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="languages">
       <h2>Languages</h2>
       <div class="languages-container">
         <div class="language-item">
           <div class="language-name">Hindi</div>
-          <div class="proficiency">Full Professional Proficiency</div>
+          <div class="proficiency">Native Speaker</div>
+          <div class="fun-fact">Can recite all dialogues from Sholay!</div>
         </div>
         <div class="language-item">
           <div class="language-name">Punjabi</div>
-          <div class="proficiency">Full Professional Proficiency</div>
+          <div class="proficiency">Native Speaker</div>
+          <div class="fun-fact">Knows all the best Punjabi jokes!</div>
         </div>
         <div class="language-item">
           <div class="language-name">English</div>
-          <div class="proficiency">Full Professional Proficiency</div>
+          <div class="proficiency">Professional Proficiency</div>
+          <div class="fun-fact">Writes better English than most native speakers!</div>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="interests">
       <h2>Interests</h2>
       <div class="interests-container">
-        <div class="interest-item">Chess</div>
-        <div class="interest-item">Technology</div>
-        <div class="interest-item">Programming</div>
+        <div class="interest-item">
+          <div class="interest-name">Chess</div>
+          <div class="fun-fact">Checkmate in 3 moves? Challenge accepted!</div>
+        </div>
+        <div class="interest-item">
+          <div class="interest-name">Technology</div>
+          <div class="fun-fact">Can talk about tech for hours without blinking!</div>
+        </div>
+        <div class="interest-item">
+          <div class="interest-name">Programming</div>
+          <div class="fun-fact">When I'm not balancing books, I'm balancing brackets!</div>
+        </div>
+        <div class="interest-item">
+          <div class="interest-name">Finance</div>
+          <div class="fun-fact">I dream in Excel formulas!</div>
+        </div>
       </div>
     </section>
+  </div>
+
+  <!-- Interactive Click Me Button -->
+  <div class="click-me" id="funButton">
+    <i class="fas fa-magic"></i>
+  </div>
+
+  <!-- Fun Modal -->
+  <div class="fun-modal" id="funModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModal">&times;</button>
+      <h3>Did You Know?</h3>
+      <p id="funFactText">Gagan once automated a 4-hour accounting task down to 2 minutes using Excel macros, then spent the saved time perfecting his chess strategy!</p>
+      <p><small>Click anywhere to close</small></p>
+    </div>
   </div>
 
   <footer>
@@ -440,5 +1005,122 @@
       <p>© 2025 Gagan Rastogi. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    // Scroll animations
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.section');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+
+      // Make profile pic float on hover
+      const profilePic = document.querySelector('.profile-pic');
+      profilePic.addEventListener('mouseenter', () => {
+        profilePic.style.animation = 'float 3s ease-in-out infinite';
+      });
+      profilePic.addEventListener('mouseleave', () => {
+        profilePic.style.animation = '';
+      });
+
+      // Fun button interaction
+      const funButton = document.getElementById('funButton');
+      const funModal = document.getElementById('funModal');
+      const closeModal = document.getElementById('closeModal');
+      const funFactText = document.getElementById('funFactText');
+
+      const funFacts = [
+        "Gagan can recite the entire GST tax code from memory (just kidding... or is he?)",
+        "In his free time, Gagan enjoys finding tax loopholes... for fun!",
+        "Gagan once debugged a complex Excel macro in his sleep!",
+        "Legend says Gagan's Tally skills are so fast, he can finish month-end closing in a day!",
+        "Gagan's idea of a relaxing weekend is optimizing database queries!",
+        "They say Gagan can calculate compound interest in his head faster than a calculator!",
+        "Gagan doesn't count sheep to fall asleep - he reviews balance sheets!",
+        "The only thing Gagan loves more than a balanced ledger is a perfectly optimized algorithm!"
+      ];
+
+      funButton.addEventListener('click', () => {
+        funFactText.textContent = funFacts[Math.floor(Math.random() * funFacts.length)];
+        funModal.classList.add('active');
+      });
+
+      closeModal.addEventListener('click', () => {
+        funModal.classList.remove('active');
+      });
+
+      funModal.addEventListener('click', (e) => {
+        if (e.target === funModal) {
+          funModal.classList.remove('active');
+        }
+      });
+
+      // Add hover effects to skills
+      const skillTags = document.querySelectorAll('.skill-tag');
+      skillTags.forEach(tag => {
+        tag.addEventListener('mouseenter', () => {
+          tag.style.transform = 'translateY(-5px) rotate(2deg)';
+        });
+        tag.addEventListener('mouseleave', () => {
+          tag.style.transform = '';
+        });
+      });
+
+      // Easter egg - change title on blur
+      const originalTitle = document.title;
+      window.addEventListener('blur', () => {
+        document.title = "Wait! Come back! 😢";
+      });
+      window.addEventListener('focus', () => {
+        document.title = originalTitle;
+      });
+    });
+
+    // Add confetti effect for fun
+    function showConfetti() {
+      const confettiSettings = { 
+        target: 'confetti-canvas',
+        max: 150,
+        size: 1.5,
+        animate: true,
+        props: ['circle', 'square', 'triangle', 'line'],
+        colors: [[255,209,102], [60,110,113], [40,75,99]],
+        clock: 25,
+        rotate: true,
+        start_from_edge: true,
+        respawn: true
+      };
+      
+      const confetti = new ConfettiGenerator(confettiSettings);
+      confetti.render();
+      
+      setTimeout(() => {
+        confetti.clear();
+      }, 3000);
+    }
+
+    // Load confetti script if button is clicked
+    document.getElementById('funButton').addEventListener('click', () => {
+      if (!window.ConfettiGenerator) {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js';
+        script.onload = showConfetti;
+        document.body.appendChild(script);
+      } else {
+        showConfetti();
+      }
+    });
+  </script>
 </body>
 </html>
