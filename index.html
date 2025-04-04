@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gagan Rastogi | Finance & Tech Professional</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet>
   <style>
     :root {
       --primary-color: #284B63;
@@ -84,42 +84,18 @@
       width: 180px;
       height: 180px;
       border-radius: 50%;
-      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
       margin-bottom: 25px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 72px;
-      color: var(--light-color);
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       transition: var(--transition);
       position: relative;
       overflow: hidden;
+      border: 4px solid white;
+      object-fit: cover;
     }
 
     .profile-pic:hover {
       transform: scale(1.05);
       box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    }
-
-    .profile-pic::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to bottom right,
-        rgba(255,255,255,0.3),
-        rgba(255,255,255,0)
-      );
-      transform: rotate(30deg);
-      transition: var(--transition);
-    }
-
-    .profile-pic:hover::after {
-      transform: rotate(30deg) translate(20%, 20%);
     }
 
     .contact-info {
@@ -226,28 +202,6 @@
       background: var(--card-bg);
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-
-    .intro::before {
-      content: open-quote;
-      font-size: 4rem;
-      color: var(--secondary-color);
-      opacity: 0.2;
-      position: absolute;
-      top: -10px;
-      left: 10px;
-      font-family: Georgia, serif;
-    }
-
-    .intro::after {
-      content: close-quote;
-      font-size: 4rem;
-      color: var(--secondary-color);
-      opacity: 0.2;
-      position: absolute;
-      bottom: -40px;
-      right: 10px;
-      font-family: Georgia, serif;
     }
 
     /* Experience Styles */
@@ -378,25 +332,6 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    .skill-tag::after {
-      content: attr(data-level);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .skill-tag:hover::after {
-      opacity: 1;
-    }
-
     /* Education Styles */
     .education-item {
       margin-bottom: 30px;
@@ -453,31 +388,11 @@
       transition: var(--transition);
       min-width: 150px;
       text-align: center;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
     }
 
     .language-item:hover, .interest-item:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-
-    .language-item::after, .interest-item::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: linear-gradient(to right, var(--secondary-color), var(--highlight-color));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-
-    .language-item:hover::after, .interest-item:hover::after {
-      transform: scaleX(1);
     }
 
     .language-name, .interest-name {
@@ -488,32 +403,6 @@
     .proficiency {
       font-size: 1rem;
       color: #666;
-    }
-
-    /* Floating Clickable Elements */
-    .floating-element {
-      position: fixed;
-      width: 40px;
-      height: 40px;
-      background: var(--highlight-color);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 100;
-      animation: float 6s ease-in-out infinite;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .floating-element:hover {
-      transform: scale(1.1);
-    }
-
-    .floating-element i {
-      color: var(--dark-color);
-      font-size: 1.2rem;
     }
 
     /* Footer Styles */
@@ -553,15 +442,6 @@
       to {
         opacity: 1;
         transform: translateY(0);
-      }
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0) rotate(0deg);
-      }
-      50% {
-        transform: translateY(-20px) rotate(5deg);
       }
     }
 
@@ -612,17 +492,10 @@
   </style>
 </head>
 <body>
-  <!-- Floating background elements -->
-  <div class="floating-element" style="top: 20%; left: 5%; animation-delay: 0s;"><i class="fas fa-star"></i></div>
-  <div class="floating-element" style="top: 30%; right: 8%; animation-delay: 1s;"><i class="fas fa-heart"></i></div>
-  <div class="floating-element" style="bottom: 20%; left: 10%; animation-delay: 2s;"><i class="fas fa-lightbulb"></i></div>
-  <div class="floating-element" style="top: 15%; right: 15%; animation-delay: 0.5s;"><i class="fas fa-bolt"></i></div>
-  <div class="floating-element" style="bottom: 30%; right: 5%; animation-delay: 1.5s;"><i class="fas fa-cloud"></i></div>
-
   <header>
     <div class="container">
       <div class="profile-container">
-        <div class="profile-pic">GR</div>
+        <img src="https://i0.wp.com/wikiwiki.in/wp-content/uploads/2021/09/Vaibhav-Thakkar.jpg?resize=375,375&ssl=1" alt="Gagan Rastogi" class="profile-pic">
         <h1>Gagan Rastogi</h1>
         <div class="contact-info">
           <div class="contact-item">
@@ -751,15 +624,15 @@
     <section class="section" id="skills">
       <h2>Skills & Expertise</h2>
       <div class="skills-container">
-        <div class="skill-tag" data-level="Advanced">Excel Macros & VBA</div>
-        <div class="skill-tag" data-level="Intermediate">Python</div>
-        <div class="skill-tag" data-level="Advanced">WordPress</div>
-        <div class="skill-tag" data-level="Expert">Tally</div>
-        <div class="skill-tag" data-level="Expert">Mukti</div>
-        <div class="skill-tag" data-level="Advanced">Busy (Accounting Software)</div>
-        <div class="skill-tag" data-level="Intermediate">PhotoShop</div>
-        <div class="skill-tag" data-level="Intermediate">Video Editing</div>
-        <div class="skill-tag" data-level="Advanced">Website Management</div>
+        <div class="skill-tag">Excel Macros & VBA</div>
+        <div class="skill-tag">Python</div>
+        <div class="skill-tag">WordPress</div>
+        <div class="skill-tag">Tally</div>
+        <div class="skill-tag">Mukti</div>
+        <div class="skill-tag">Busy (Accounting Software)</div>
+        <div class="skill-tag">PhotoShop</div>
+        <div class="skill-tag">Video Editing</div>
+        <div class="skill-tag">Website Management</div>
       </div>
     </section>
 
@@ -849,120 +722,6 @@
       sections.forEach(section => {
         observer.observe(section);
       });
-
-      // Make profile pic float on hover
-      const profilePic = document.querySelector('.profile-pic');
-      profilePic.addEventListener('mouseenter', () => {
-        profilePic.style.animation = 'float 3s ease-in-out infinite';
-      });
-      profilePic.addEventListener('mouseleave', () => {
-        profilePic.style.animation = '';
-      });
-
-      // Add hover effects to skills
-      const skillTags = document.querySelectorAll('.skill-tag');
-      skillTags.forEach(tag => {
-        tag.addEventListener('mouseenter', () => {
-          tag.style.transform = 'translateY(-5px) rotate(2deg)';
-        });
-        tag.addEventListener('mouseleave', () => {
-          tag.style.transform = '';
-        });
-      });
-
-      // Easter egg - change title on blur
-      const originalTitle = document.title;
-      window.addEventListener('blur', () => {
-        document.title = "Wait! Come back!";
-      });
-      window.addEventListener('focus', () => {
-        document.title = originalTitle;
-      });
-
-      // Floating elements interaction
-      const floatingElements = document.querySelectorAll('.floating-element');
-      floatingElements.forEach(element => {
-        element.addEventListener('click', () => {
-          // Create "Just kidding" message
-          const message = document.createElement('div');
-          message.textContent = 'Pop!';
-          message.style.position = 'fixed';
-          message.style.top = '50%';
-          message.style.left = '50%';
-          message.style.transform = 'translate(-50%, -50%)';
-          message.style.backgroundColor = 'rgba(0,0,0,0.8)';
-          message.style.color = 'white';
-          message.style.padding = '10px 20px';
-          message.style.borderRadius = '5px';
-          message.style.zIndex = '1000';
-          message.style.animation = 'fadeInUp 0.5s forwards';
-          document.body.appendChild(message);
-          
-          // Remove message after 1.5 seconds
-          setTimeout(() => {
-            message.style.animation = 'fadeInUp 0.5s reverse forwards';
-            setTimeout(() => message.remove(), 500);
-          }, 1500);
-          
-          // Remove the clicked element
-          element.style.transform = 'scale(0)';
-          element.style.opacity = '0';
-          setTimeout(() => element.remove(), 300);
-        });
-      });
-
-      // Add more floating elements periodically
-      function addFloatingElement() {
-        if (document.querySelectorAll('.floating-element').length < 10) {
-          const icons = ['star', 'heart', 'lightbulb', 'bolt', 'cloud', 'gem', 'rocket', 'music', 'cog', 'globe'];
-          const element = document.createElement('div');
-          element.className = 'floating-element';
-          element.innerHTML = `<i class="fas fa-${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
-          
-          // Random position
-          const top = Math.random() * 80 + 10;
-          const left = Math.random() * 80 + 10;
-          const delay = Math.random() * 3;
-          
-          element.style.top = `${top}%`;
-          element.style.left = `${left}%`;
-          element.style.animationDelay = `${delay}s`;
-          
-          // Add click event
-          element.addEventListener('click', () => {
-            // Create "Just kidding" message
-            const message = document.createElement('div');
-            message.textContent = 'Pop!';
-            message.style.position = 'fixed';
-            message.style.top = '50%';
-            message.style.left = '50%';
-            message.style.transform = 'translate(-50%, -50%)';
-            message.style.backgroundColor = 'rgba(0,0,0,0.8)';
-            message.style.color = 'white';
-            message.style.padding = '10px 20px';
-            message.style.borderRadius = '5px';
-            message.style.zIndex = '1000';
-            message.style.animation = 'fadeInUp 0.5s forwards';
-            document.body.appendChild(message);
-            
-            // Remove message after 1.5 seconds
-            setTimeout(() => {
-              message.style.animation = 'fadeInUp 0.5s reverse forwards';
-              setTimeout(() => message.remove(), 500);
-            }, 1500);
-            
-            // Remove the clicked element
-            element.style.transform = 'scale(0)';
-            element.style.opacity = '0';
-            setTimeout(() => element.remove(), 300);
-          });
-          
-          document.body.appendChild(element);
-        }
-      }
-
-      // Add new elements every 5-10 seconds
-      setInterval(addFloatingElement, Math.random() * 5000 + 5000);
     });
   </script>
 </body>
