@@ -13,18 +13,78 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #2c5f7c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Light Theme (Default) */
+        body.light-theme {
             background-color: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        /* Dark Theme */
+        body.dark-theme {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        body.dark-theme .theme-toggle {
+            background: #6bc4a6;
+        }
+
+        .container-wrapper {
             padding: 20px;
+            min-height: 100vh;
         }
 
         .resume-container {
             max-width: 210mm;
             min-height: 297mm;
             margin: 0 auto;
-            background: white;
             display: grid;
             grid-template-columns: 1fr 320px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .light-theme .resume-container {
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .resume-container {
+            background: #2d2d2d;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
         }
 
         /* Header Section */
@@ -51,7 +111,19 @@
             height: 0;
             border-style: solid;
             border-width: 0 0 40px 40px;
+            border-color: transparent transparent var(--header-right-bg) transparent;
+        }
+
+        .dark-theme .header-left {
+            background: #1e3a4f;
+        }
+
+        .light-theme .header-left::after {
             border-color: transparent transparent white transparent;
+        }
+
+        .dark-theme .header-left::after {
+            border-color: transparent transparent #2d2d2d transparent;
         }
 
         .name {
@@ -75,9 +147,18 @@
         }
 
         .header-right {
-            background: white;
+            background: var(--header-right-bg);
             padding: 40px 30px;
             text-align: right;
+            transition: background-color 0.3s ease;
+        }
+
+        .light-theme .header-right {
+            background: white;
+        }
+
+        .dark-theme .header-right {
+            background: #2d2d2d;
         }
 
         .contact-item {
@@ -86,6 +167,14 @@
             align-items: center;
             margin-bottom: 15px;
             font-size: 14px;
+        }
+
+        .light-theme .contact-item {
+            color: #1a1a1a;
+        }
+
+        .dark-theme .contact-item {
+            color: #e0e0e0;
         }
 
         .contact-icon {
@@ -101,8 +190,17 @@
         }
 
         .sidebar {
-            background: #f8f8f8;
+            background: var(--sidebar-bg);
             padding: 40px 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .light-theme .sidebar {
+            background: #f8f8f8;
+        }
+
+        .dark-theme .sidebar {
+            background: #252525;
         }
 
         .section {
@@ -123,6 +221,12 @@
             align-items: center;
             justify-content: center;
             margin-right: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .dark-theme .section-icon {
+            background: #1e3a4f;
         }
 
         .icon-svg {
@@ -134,8 +238,15 @@
         .section-title {
             font-size: 24px;
             font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .light-theme .section-title {
             color: #1a1a1a;
-            text-transform: uppercase;
+        }
+
+        .dark-theme .section-title {
+            color: #e0e0e0;
         }
 
         /* Work Experience */
@@ -146,14 +257,30 @@
         .job-title {
             font-size: 18px;
             font-weight: bold;
-            color: #1a1a1a;
             margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .light-theme .job-title {
+            color: #1a1a1a;
+        }
+
+        .dark-theme .job-title {
+            color: #ffffff;
         }
 
         .company {
             font-size: 16px;
-            color: #1a1a1a;
             margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .light-theme .company {
+            color: #1a1a1a;
+        }
+
+        .dark-theme .company {
+            color: #d0d0d0;
         }
 
         .dates {
@@ -178,7 +305,15 @@
             padding-left: 20px;
             margin-bottom: 8px;
             font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .light-theme .achievements-list li {
             color: #1a1a1a;
+        }
+
+        .dark-theme .achievements-list li {
+            color: #d0d0d0;
         }
 
         .achievements-list li::before {
@@ -201,13 +336,22 @@
         }
 
         .skill-tag {
-            background: #e0e0e0;
             padding: 10px 15px;
             border-radius: 8px;
             text-align: center;
             font-size: 13px;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .skill-tag {
+            background: #e0e0e0;
             color: #1a1a1a;
+        }
+
+        .dark-theme .skill-tag {
+            background: #3d3d3d;
+            color: #e0e0e0;
         }
 
         /* Languages */
@@ -224,8 +368,16 @@
         .language-name {
             font-size: 15px;
             font-weight: 500;
-            color: #1a1a1a;
             margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .light-theme .language-name {
+            color: #1a1a1a;
+        }
+
+        .dark-theme .language-name {
+            color: #e0e0e0;
         }
 
         .language-proficiency {
@@ -236,13 +388,25 @@
         /* Certificates */
         .certificate-item {
             font-size: 14px;
-            color: #1a1a1a;
             margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .light-theme .certificate-item {
+            color: #1a1a1a;
+        }
+
+        .dark-theme .certificate-item {
+            color: #d0d0d0;
         }
 
         .cert-dates {
             color: #2c5f7c;
             font-weight: normal;
+        }
+
+        .dark-theme .cert-dates {
+            color: #6bc4a6;
         }
 
         /* Education */
@@ -253,14 +417,30 @@
         .degree {
             font-size: 16px;
             font-weight: bold;
-            color: #1a1a1a;
             margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .light-theme .degree {
+            color: #1a1a1a;
+        }
+
+        .dark-theme .degree {
+            color: #ffffff;
         }
 
         .institution {
             font-size: 14px;
-            color: #1a1a1a;
             margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .light-theme .institution {
+            color: #1a1a1a;
+        }
+
+        .dark-theme .institution {
+            color: #d0d0d0;
         }
 
         .edu-dates {
@@ -283,13 +463,22 @@
         }
 
         .interest-tag {
-            background: #e0e0e0;
             padding: 10px 15px;
             border-radius: 8px;
             text-align: center;
             font-size: 13px;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .interest-tag {
+            background: #e0e0e0;
             color: #1a1a1a;
+        }
+
+        .dark-theme .interest-tag {
+            background: #3d3d3d;
+            color: #e0e0e0;
         }
 
         .clearfix::after {
@@ -298,254 +487,456 @@
             clear: both;
         }
 
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .container-wrapper {
+                padding: 10px;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+
+            .resume-container {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+
+            .header {
+                grid-template-columns: 1fr;
+            }
+
+            .header-left {
+                padding: 30px 20px;
+            }
+
+            .name {
+                font-size: 36px;
+            }
+
+            .title {
+                font-size: 16px;
+            }
+
+            .header-right {
+                padding: 20px;
+                text-align: left;
+            }
+
+            .contact-item {
+                justify-content: flex-start;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .sidebar {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .section-icon {
+                width: 40px;
+                height: 40px;
+                margin-right: 10px;
+            }
+
+            .icon-svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .skills-grid,
+            .interests-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .languages-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .theme-toggle {
+                top: 5px;
+                right: 5px;
+                padding: 8px 12px;
+                font-size: 11px;
+            }
+
+            .name {
+                font-size: 28px;
+            }
+
+            .title {
+                font-size: 14px;
+            }
+
+            .header-left,
+            .header-right {
+                padding: 15px;
+            }
+
+            .main-content,
+            .sidebar {
+                padding: 15px;
+            }
+
+            .section-title {
+                font-size: 18px;
+            }
+
+            .job-title {
+                font-size: 16px;
+            }
+
+            .achievements-list li {
+                font-size: 13px;
+            }
+        }
+
         @media print {
+            .theme-toggle {
+                display: none;
+            }
+
             body {
                 background: white;
+            }
+
+            .container-wrapper {
                 padding: 0;
             }
+
             .resume-container {
                 box-shadow: none;
                 max-width: none;
             }
+
+            .dark-theme .resume-container {
+                background: white;
+            }
+
+            .dark-theme .header-left {
+                background: #2c5f7c;
+            }
+
+            .dark-theme .header-right {
+                background: white;
+            }
+
+            .dark-theme .sidebar {
+                background: #f8f8f8;
+            }
+
+            .dark-theme .main-content,
+            .dark-theme .section-title,
+            .dark-theme .job-title,
+            .dark-theme .company,
+            .dark-theme .achievements-list li,
+            .dark-theme .certificate-item,
+            .dark-theme .degree,
+            .dark-theme .institution,
+            .dark-theme .skill-tag,
+            .dark-theme .interest-tag,
+            .dark-theme .language-name {
+                color: #1a1a1a !important;
+            }
+
+            .dark-theme .sidebar {
+                background: #f8f8f8 !important;
+            }
+
+            .dark-theme .skill-tag,
+            .dark-theme .interest-tag {
+                background: #e0e0e0 !important;
+            }
         }
     </style>
 </head>
-<body>
-    <div class="resume-container">
-        <!-- Header Section -->
-        <div class="header">
-            <div class="header-left">
-                <div class="name">Gagan Rastogi</div>
-                <div class="title">Accountant</div>
-                <div class="summary">
-                    To contribute to organisational growth in a challenging and dynamic environment while maintaining accountability and continuously developing professional excellence throughout my career.
-                </div>
-            </div>
-            <div class="header-right">
-                <div class="contact-item">
-                    <span>gaganrastogimks@gmail.com</span>
-                    <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                </div>
-                <div class="contact-item">
-                    <span>9041698551</span>
-                    <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7a2 2 0 011.72 2.03z" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                </div>
-                <div class="contact-item">
-                    <span>Muktsar</span>
-                    <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/>
-                        <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                </div>
-            </div>
-        </div>
+<body class="light-theme">
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span id="theme-text">Dark Mode</span>
+    </button>
 
-        <!-- Main Content Area -->
-        <div class="main-content">
-            <!-- Work Experience Section -->
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20 6h-4V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2H4a1 1 0 000 2h1v10a2 2 0 002 2h10a2 2 0 002-2V8h1a1 1 0 100-2zM12 4h4v2h-4V4zm6 16H6V8h12v12z" fill="currentColor"/>
+    <div class="container-wrapper">
+        <div class="resume-container">
+            <!-- Header Section -->
+            <div class="header">
+                <div class="header-left">
+                    <div class="name">Gagan Rastogi</div>
+                    <div class="title">Accountant</div>
+                    <div class="summary">
+                        To contribute to organisational growth in a challenging and dynamic environment while maintaining accountability and continuously developing professional excellence throughout my career.
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="contact-item">
+                        <span>gaganrastogimks@gmail.com</span>
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="2"/>
                         </svg>
                     </div>
-                    <div class="section-title">Work Experience</div>
+                    <div class="contact-item">
+                        <span>9041698551</span>
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7a2 2 0 011.72 2.03z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="contact-item">
+                        <span>Muktsar</span>
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
                 </div>
+            </div>
 
-                <!-- CA Assistant -->
-                <div class="experience-item">
-                    <div class="job-title">CA Assistant (3 + 1 = 4 Years)</div>
-                    <div class="company">CA Abhimanyu Juneja & Associates</div>
-                    <div class="dates">08/2018 - Present</div>
-                    <div class="achievements-title">Achievements/Tasks</div>
-                    <ul class="achievements-list">
-                        <li>GST Returns / Income Tax Returns</li>
-                        <li>CA Reports / Net Worth Reports</li>
-                        <li>Projected Balance-Sheets / CMA Data</li>
-                        <li>Tax Audit & Related Reports</li>
-                        <li>Bank Audit (SBI, PNB & Bank Of India)</li>
-                        <li>Internal Audit (Easy Day & DAV School)</li>
-                    </ul>
-                </div>
-
-                <!-- Assistant Accountant -->
-                <div class="experience-item">
-                    <div class="job-title">Assistant Accountant (9 Years Part-Time)</div>
-                    <div class="company">C.L Electronics Private Limited</div>
-                    <div class="dates">04/2016 - Present</div>
-                    <div class="achievements-title">Achievements/Tasks</div>
-                    <ul class="achievements-list">
-                        <li>Documenting financial transactions</li>
-                        <li>Financial statement preparation</li>
-                        <li>Tax preparation and compliance</li>
-                    </ul>
-                </div>
-
-                <!-- IT & Accounts Manager -->
-                <div class="experience-item">
-                    <div class="job-title">IT & Accounts Manager (8 Months)</div>
-                    <div class="company">D.A.V Public School</div>
-                    <div class="dates">12/2023 - 07/2024</div>
-                    <div class="achievements-title">Achievements/Tasks</div>
-                    <ul class="achievements-list">
-                        <li>Created & Managed School Website</li>
-                        <li>Accounting & Taxation</li>
-                        <li>Computer Lab Management</li>
-                        <li>Various Reports & Data Analysis</li>
-                        <li>UDISE Portal & E-Punjab Portal</li>
-                    </ul>
-                </div>
-
-                <!-- Chief Operational Officer -->
-                <div class="experience-item">
-                    <div class="job-title">Chief Operational Officer (2 Years)</div>
-                    <div class="company">Castudyweb.com</div>
-                    <div class="dates">08/2021 - 07/2023</div>
-                    <div class="achievements-title">Achievements/Tasks</div>
-                    <ul class="achievements-list">
-                        <li>Accounting & Taxation</li>
-                        <li>Programming/Coding</li>
-                        <li>New Websites & Tools Creation</li>
-                        <li>Website Back-end Management</li>
-                        <li>Data Analysis</li>
-                        <li>Social Media Management</li>
-                    </ul>
-                </div>
-
-                <!-- Advocate Assistant -->
-                <div class="experience-item">
-                    <div class="job-title">Advocate Assistant (3 Months)</div>
-                    <div class="company">Adv. Vishal Khurana</div>
-                    <div class="dates">05/2018 - 08/2018</div>
-                    <div class="achievements-title">Achievements/Tasks</div>
-                    <ul class="achievements-list">
-                        <li>Income Tax Returns</li>
-                        <li>Audit Data Preparation</li>
-                        <li>GST Returns</li>
-                    </ul>
-                </div>
-
-                <!-- Certificates Section -->
-                <div class="section" style="margin-top: 50px;">
+            <!-- Main Content Area -->
+            <div class="main-content">
+                <!-- Work Experience Section -->
+                <div class="section">
                     <div class="section-header">
                         <div class="section-icon">
                             <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" stroke-width="2" fill="none"/>
-                                <path d="M14 2v6h6" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <path d="M20 6h-4V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2H4a1 1 0 000 2h1v10a2 2 0 002 2h10a2 2 0 002-2V8h1a1 1 0 100-2zM12 4h4v2h-4V4zm6 16H6V8h12v12z" fill="currentColor"/>
                             </svg>
                         </div>
-                        <div class="section-title">Certificates</div>
+                        <div class="section-title">Work Experience</div>
                     </div>
-                    <div class="certificate-item">
-                        Information Technology - ICITSS <span class="cert-dates">(05/2018 - 05/2018)</span>
+
+                    <!-- CA Assistant -->
+                    <div class="experience-item">
+                        <div class="job-title">CA Assistant (3 + 1 = 4 Years)</div>
+                        <div class="company">CA Abhimanyu Juneja & Associates</div>
+                        <div class="dates">08/2018 - Present</div>
+                        <div class="achievements-title">Achievements/Tasks</div>
+                        <ul class="achievements-list">
+                            <li>GST Returns / Income Tax Returns</li>
+                            <li>CA Reports / Net Worth Reports</li>
+                            <li>Projected Balance-Sheets / CMA Data</li>
+                            <li>Tax Audit & Related Reports</li>
+                            <li>Bank Audit (SBI, PNB & Bank Of India)</li>
+                            <li>Internal Audit (Easy Day & DAV School)</li>
+                        </ul>
                     </div>
-                    <div class="certificate-item">
-                        Diploma In Computer Application <span class="cert-dates">(04/2019 - 03/2020)</span>
+
+                    <!-- Assistant Accountant -->
+                    <div class="experience-item">
+                        <div class="job-title">Assistant Accountant (9 Years Part-Time)</div>
+                        <div class="company">C.L Electronics Private Limited</div>
+                        <div class="dates">04/2016 - Present</div>
+                        <div class="achievements-title">Achievements/Tasks</div>
+                        <ul class="achievements-list">
+                            <li>Documenting financial transactions</li>
+                            <li>Financial statement preparation</li>
+                            <li>Tax preparation and compliance</li>
+                        </ul>
+                    </div>
+
+                    <!-- IT & Accounts Manager -->
+                    <div class="experience-item">
+                        <div class="job-title">IT & Accounts Manager (8 Months)</div>
+                        <div class="company">D.A.V Public School</div>
+                        <div class="dates">12/2023 - 07/2024</div>
+                        <div class="achievements-title">Achievements/Tasks</div>
+                        <ul class="achievements-list">
+                            <li>Created & Managed School Website</li>
+                            <li>Accounting & Taxation</li>
+                            <li>Computer Lab Management</li>
+                            <li>Various Reports & Data Analysis</li>
+                            <li>UDISE Portal & E-Punjab Portal</li>
+                        </ul>
+                    </div>
+
+                    <!-- Chief Operational Officer -->
+                    <div class="experience-item">
+                        <div class="job-title">Chief Operational Officer (2 Years)</div>
+                        <div class="company">Castudyweb.com</div>
+                        <div class="dates">08/2021 - 07/2023</div>
+                        <div class="achievements-title">Achievements/Tasks</div>
+                        <ul class="achievements-list">
+                            <li>Accounting & Taxation</li>
+                            <li>Programming/Coding</li>
+                            <li>New Websites & Tools Creation</li>
+                            <li>Website Back-end Management</li>
+                            <li>Data Analysis</li>
+                            <li>Social Media Management</li>
+                        </ul>
+                    </div>
+
+                    <!-- Advocate Assistant -->
+                    <div class="experience-item">
+                        <div class="job-title">Advocate Assistant (3 Months)</div>
+                        <div class="company">Adv. Vishal Khurana</div>
+                        <div class="dates">05/2018 - 08/2018</div>
+                        <div class="achievements-title">Achievements/Tasks</div>
+                        <ul class="achievements-list">
+                            <li>Income Tax Returns</li>
+                            <li>Audit Data Preparation</li>
+                            <li>GST Returns</li>
+                        </ul>
+                    </div>
+
+                    <!-- Certificates Section -->
+                    <div class="section" style="margin-top: 50px;">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <path d="M14 2v6h6" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </div>
+                            <div class="section-title">Certificates</div>
+                        </div>
+                        <div class="certificate-item">
+                            Information Technology - ICITSS <span class="cert-dates">(05/2018 - 05/2018)</span>
+                        </div>
+                        <div class="certificate-item">
+                            Diploma In Computer Application <span class="cert-dates">(04/2019 - 03/2020)</span>
+                        </div>
+                    </div>
+
+                    <!-- Education Section -->
+                    <div class="section" style="margin-top: 50px;">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M6 12v5c0 1.1.9 2 2 2h2a2 2 0 002-2v-5M12 22v-9" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M17 17h.01" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="section-title">Education</div>
+                        </div>
+                        <div class="education-item clearfix">
+                            <div class="degree">CA Intermediate</div>
+                            <div class="institution">Institute Of Chartered Accountants Of India</div>
+                            <div class="edu-dates">2018 - 2021</div>
+                        </div>
+                        <div class="education-item clearfix">
+                            <div class="degree">Bachelor Of Commerce</div>
+                            <div class="institution">Govt. College, Panjab University</div>
+                            <div class="edu-dates">05/2015 - 05/2018</div>
+                            <span class="location">Sri Muktsar Sahib</span>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Education Section -->
-                <div class="section" style="margin-top: 50px;">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Skills Section -->
+                <div class="section">
                     <div class="section-header">
                         <div class="section-icon">
                             <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke="currentColor" stroke-width="2"/>
-                                <path d="M6 12v5c0 1.1.9 2 2 2h2a2 2 0 002-2v-5M12 22v-9" stroke="currentColor" stroke-width="2"/>
-                                <path d="M17 17h.01" stroke="currentColor" stroke-width="2"/>
+                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2"/>
                             </svg>
                         </div>
-                        <div class="section-title">Education</div>
+                        <div class="section-title" style="font-size: 18px;">Skills</div>
                     </div>
-                    <div class="education-item clearfix">
-                        <div class="degree">CA Intermediate</div>
-                        <div class="institution">Institute Of Chartered Accountants Of India</div>
-                        <div class="edu-dates">2018 - 2021</div>
-                    </div>
-                    <div class="education-item clearfix">
-                        <div class="degree">Bachelor Of Commerce</div>
-                        <div class="institution">Govt. College, Panjab University</div>
-                        <div class="edu-dates">05/2015 - 05/2018</div>
-                        <span class="location">Sri Muktsar Sahib</span>
+                    <div class="skills-grid">
+                        <div class="skill-tag">Advance Excel</div>
+                        <div class="skill-tag">Programming</div>
+                        <div class="skill-tag">Problem Solving</div>
+                        <div class="skill-tag">Photo Editing</div>
+                        <div class="skill-tag">Video Editing</div>
+                        <div class="skill-tag">Tally/Busy/Mukti</div>
+                        <div class="skill-tag">MS Office Suite</div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Skills Section -->
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/>
-                            <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
-                            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2"/>
-                        </svg>
+                <!-- Languages Section -->
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M13 8H3M17 12H3M17 16H3" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="section-title" style="font-size: 18px;">Languages</div>
                     </div>
-                    <div class="section-title" style="font-size: 18px;">Skills</div>
+                    <div class="languages-grid">
+                        <div class="language-item">
+                            <div class="language-name">English</div>
+                            <div class="language-proficiency">Full Professional Proficiency</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-name">Hindi</div>
+                            <div class="language-proficiency">Full Professional Proficiency</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-name">Punjabi</div>
+                            <div class="language-proficiency">Full Professional Proficiency</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="skills-grid">
-                    <div class="skill-tag">Advance Excel</div>
-                    <div class="skill-tag">Programming</div>
-                    <div class="skill-tag">Problem Solving</div>
-                    <div class="skill-tag">Photo Editing</div>
-                    <div class="skill-tag">Video Editing</div>
-                    <div class="skill-tag">Tally/Busy/Mukti</div>
-                    <div class="skill-tag">MS Office Suite</div>
-                </div>
-            </div>
 
-            <!-- Languages Section -->
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M13 8H3M17 12H3M17 16H3" stroke="currentColor" stroke-width="2"/>
-                        </svg>
+                <!-- Interests Section -->
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="section-title" style="font-size: 18px;">Interests</div>
                     </div>
-                    <div class="section-title" style="font-size: 18px;">Languages</div>
-                </div>
-                <div class="languages-grid">
-                    <div class="language-item">
-                        <div class="language-name">English</div>
-                        <div class="language-proficiency">Full Professional Proficiency</div>
+                    <div class="interests-grid">
+                        <div class="interest-tag">Programming</div>
+                        <div class="interest-tag">Chess</div>
+                        <div class="interest-tag">Cricket</div>
+                        <div class="interest-tag">Technology</div>
                     </div>
-                    <div class="language-item">
-                        <div class="language-name">Hindi</div>
-                        <div class="language-proficiency">Full Professional Proficiency</div>
-                    </div>
-                    <div class="language-item">
-                        <div class="language-name">Punjabi</div>
-                        <div class="language-proficiency">Full Professional Proficiency</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interests Section -->
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-icon">
-                        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor"/>
-                        </svg>
-                    </div>
-                    <div class="section-title" style="font-size: 18px;">Interests</div>
-                </div>
-                <div class="interests-grid">
-                    <div class="interest-tag">Programming</div>
-                    <div class="interest-tag">Chess</div>
-                    <div class="interest-tag">Cricket</div>
-                    <div class="interest-tag">Technology</div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Load saved theme from localStorage
+        const savedTheme = localStorage.getItem('resume-theme') || 'light-theme';
+        document.body.className = savedTheme;
+        updateThemeText(savedTheme);
+
+        function toggleTheme() {
+            const body = document.body;
+            const isDark = body.classList.contains('dark-theme');
+            
+            if (isDark) {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+                localStorage.setItem('resume-theme', 'light-theme');
+                updateThemeText('light-theme');
+            } else {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                localStorage.setItem('resume-theme', 'dark-theme');
+                updateThemeText('dark-theme');
+            }
+        }
+
+        function updateThemeText(theme) {
+            const themeText = document.getElementById('theme-text');
+            themeText.textContent = theme === 'dark-theme' ? 'Light Mode' : 'Dark Mode';
+        }
+    </script>
 </body>
 </html>
