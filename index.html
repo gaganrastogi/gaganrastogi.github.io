@@ -415,6 +415,90 @@
   }
 
   .resume { animation: fadeUp 0.5s ease forwards; }
+
+  /* ── RESPONSIVE / MOBILE ── */
+  @media (max-width: 640px) {
+
+    body { padding: 0; }
+
+    .print-bar { top: 12px; right: 12px; }
+    .print-btn { padding: 8px 14px; font-size: 12px; }
+
+    /* Header */
+    .header { padding: 28px 20px 22px; }
+    .name { font-size: 30px; }
+    .role { font-size: 11px; letter-spacing: 1.8px; }
+    .location { font-size: 12px; }
+    .contact-row { gap: 12px; margin-top: 14px; padding-top: 12px; }
+    .contact-item { font-size: 12px; }
+    .dob-tag { font-size: 11px; }
+
+    /* Stack sidebar BELOW main column */
+    .body {
+      grid-template-columns: 1fr;
+    }
+
+    /* Main column */
+    .main {
+      padding: 28px 20px;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      padding: 28px 20px;
+    }
+
+    /* Profile bullets */
+    .profile-bullet { padding: 12px 14px; }
+    .profile-bullet strong { font-size: 12.5px; }
+    .profile-bullet p { font-size: 12px; }
+
+    /* Jobs */
+    .job { padding-left: 16px; margin-bottom: 22px; }
+    .job-title { font-size: 13.5px; }
+    .job-period { font-size: 11px; }
+    .job-company { font-size: 12px; }
+    .job-bullets li { font-size: 12px; }
+
+    /* Job header — wrap on very small screens */
+    .job-header { flex-wrap: wrap; gap: 4px; }
+
+    /* Sidebar sections */
+    .sidebar-section { margin-bottom: 24px; }
+    .sidebar-label { font-size: 9.5px; }
+
+    /* Education */
+    .edu-degree { font-size: 13px; }
+    .edu-school { font-size: 11.5px; }
+    .edu-year { font-size: 11px; }
+
+    /* Skills */
+    .skill-group-name { font-size: 11px; }
+    .skill-tag { font-size: 11px; padding: 4px 10px; }
+
+    /* Languages */
+    .lang-item { font-size: 12.5px; }
+    .lang-level { font-size: 11px; }
+
+    /* Courses */
+    .course-name { font-size: 12px; }
+    .course-org { font-size: 11px; }
+
+    /* Hobbies */
+    .hobby-tag { font-size: 11.5px; padding: 4px 10px; }
+  }
+
+  /* Tablet — slight adjustment */
+  @media (min-width: 641px) and (max-width: 820px) {
+    body { padding: 20px 12px; }
+    .header { padding: 36px 32px 28px; }
+    .name { font-size: 36px; }
+    .body { grid-template-columns: 1fr 220px; }
+    .main { padding: 36px 28px; }
+    .sidebar { padding: 36px 20px; }
+  }
 </style>
 </head>
 <body>
@@ -730,4 +814,19 @@
         <div class="hobby-tags">
           <span class="hobby-tag">Computers</span>
           <span class="hobby-tag">Chess</span>
-          <span class="ho
+          <span class="hobby-tag">Music</span>
+          <span class="hobby-tag">Travelling</span>
+        </div>
+      </div>
+
+    </div>
+    <!-- End Sidebar -->
+
+  </div>
+  <!-- End Body -->
+
+</div>
+<!-- End Resume -->
+
+</body>
+</html>
